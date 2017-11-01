@@ -9,7 +9,7 @@ namespace com.ecdellog.delivery
 asset Parcel identified by parcelId {
   o String parcelId
   --> Shipper shipper
-  o String parcelStatus
+  o String status
   --> Courier courier
   --> Receiver receiver
 }
@@ -47,8 +47,8 @@ participant Receiver identified by receiverId {
 transaction ShipParcel {
   --> Parcel parcel
 }
-/**
+
 event DeliveryEvent {
   o String parcelId
   o String value
-} */
+}

@@ -76,7 +76,7 @@ describe('E-Commerce Delivery Logistics', () => {
             mobilePhone.shipper = factory.newRelationship(NS, 'Shipper', flipkart.$identifier);
             mobilePhone.courier = factory.newRelationship(NS, 'Courier', goJavas.$identifier);
             mobilePhone.receiver = factory.newRelationship(NS, 'Receiver', parag.$identifier);
-            mobilePhone.parcelStatus = 'XXX';
+            mobilePhone.status = 'XXX';
 
             // create the shipParcel transaction
             const ship = factory.newTransaction(NS, 'ShipParcel');
@@ -125,8 +125,8 @@ describe('E-Commerce Delivery Logistics', () => {
                     console.log ('in test newParcel.shipperId=' + newParcel.shipper.$identifier);
                     console.log ('in test newParcel.courierId=' + newParcel.courier.$identifier);
                     console.log ('in test newParcel.receiver=' + newParcel.receiver.$identifier);
-                    console.log ('in test newParcel.parcelstatus=' + newParcel.parcelstatus);
-                    //newParcel.parcelstatus.should.equal('READY_FOR_PICKUP');
+                    console.log ('in test newParcel.status=' + newParcel.status);
+                    newParcel.status.should.equal('READY_FOR_PICKUP');
                 });
         });
     });

@@ -1,6 +1,16 @@
 /**
  * Access control rules for ecom-delivery-logistics network
  */
+
+rule ShipParcel {
+    description: "Only Shippers can call ShipParcel transaction"
+    participant: "com.ecdellog.delivery.Courier"
+    operation: UPDATE
+    resource: "com.ecdellog.delivery.Parcel"
+    transaction: "com.ecdellog.delivery.ShipParcel"
+    action: DENY
+}
+
 rule Default {
     description: "Allow all participants access to all resources"
     participant: "ANY"
