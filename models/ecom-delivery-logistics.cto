@@ -10,7 +10,7 @@ namespace com.ecdellog.delivery
 asset Parcel identified by parcelId {
   o String parcelId
   --> Shipper shipper
-  o Integer status default = 0//Why can't it be Integer ?
+  o StatusValues status
   --> Courier courier
   //--> Receiver receiver
   --> ReceiverAddress consigneeAddress
@@ -73,6 +73,7 @@ asset ReceiverAddress identified by addressId {
  */
 transaction ShipParcel {
   --> Parcel parcel
+  --> status
 }
 
 event DeliveryEvent {
@@ -80,6 +81,19 @@ event DeliveryEvent {
   o String value
 }
 
+/**
+Possible Statuses
+ */
+
+ enum StatusValues {
+   o Manifest
+   o FieldInscan
+   o PickupInscan
+   o DeliveryInscan
+   o OutForDelivery
+   o Delivered
+   o Undelivered
+ }
 
 //participant Customer identified by customerId{
 //  o 
