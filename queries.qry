@@ -1,0 +1,15 @@
+/** Queries for E-Commerce Delivery Logistics business network
+*/
+
+query selectPackages {
+  description: "Select all parcels"
+  statement:
+      SELECT com.ecdellog.delivery.Parcel
+}
+
+query selectPackagesReadyForShipping {
+  description: "Select all parcels ready for shipping"
+  statement:
+      SELECT com.ecdellog.delivery.Parcel
+          WHERE (status==_$status)
+}
