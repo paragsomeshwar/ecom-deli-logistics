@@ -5,13 +5,22 @@ namespace com.ecdellog.delivery
 
 /**
  * Parcel to be delivered
- */
+ **/
+
 asset Parcel identified by parcelId {
   o String parcelId
   --> Shipper shipper
-  o String status
+  o Integer status default = 0//Why can't it be Integer ?
   --> Courier courier
-  --> Receiver receiver
+  //--> Receiver receiver
+  --> ReceiverAddress consigneeAddress
+  o String airwaybillNumber
+  o String orderNumber
+  o String productType
+  o Float collectableValue //Need to check type for float
+  o Float actualValue
+  o Integer rtsStatus
+  o String reasonCode
 }
 
 /**
@@ -21,6 +30,7 @@ participant Shipper identified by shipperId {
   o String shipperId
   o String name
   o String address
+  o Boolean activationStatus default=1 //New
 }
 
 /**
@@ -30,15 +40,32 @@ participant Courier identified by courierId {
   o String courierId
   o String name
   o String address
+  o Boolean activationStatus default=1 //New
 }
 
 /**
  * Information about receiving party
  */
-participant Receiver identified by receiverId {
+asset Receiver identified by receiverId { //Changed it to asset from participant
   o String receiverId
   o String name
+  o Integer contact
+  o Integer alternateContact
+}
+
+/**
+ * Receiver contact details
+ */
+asset ReceiverAddress identified by addressId {
+  o String addressId
   o String address
+  o String areaCode
+  o String city
+  o String state
+  o String country
+  o String region
+  --> Receiver receiver
+  //Need a way to identify Timezone
 }
 
 /**
@@ -52,3 +79,8 @@ event DeliveryEvent {
   o String parcelId
   o String value
 }
+
+
+//participant Customer identified by customerId{
+//  o 
+//}
